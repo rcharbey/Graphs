@@ -6,7 +6,7 @@ from igraph import Graph
 class Admin(object):
     @staticmethod
     def import_graph(ego):
-        return Graph.Read_GML(os.path.expanduser('../Data/Graphs/%s.gml' % ego))
+        return Graph.Read_GML(os.path.expanduser('../Data/Graphs_friends/%s.gml' % ego))
 
     @staticmethod
     def draw_graph(folder, ego, name, svg = False):

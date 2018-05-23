@@ -9,6 +9,6 @@ Created on Thu May  3 14:57:26 2018
 from os import listdir
 from graph_utils import Admin
 
-for gname in listdir('../Data/Graphs'):
+for gname in listdir('../Data/Graphs_friends'):
     egoname = gname.split('.')[0]
     Admin.write_edgelist(Admin.import_graph(egoname), egoname) 

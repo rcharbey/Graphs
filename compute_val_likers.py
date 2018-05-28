@@ -33,7 +33,7 @@ for graph_name in listdir(DATA):
     
     dict_results['n'].append(len(g.vs))
     dict_results['m'].append(len(g.es))
-    dict_results['diam'].append(ci.diameter())
+    dict_results['diametre'].append(ci.diameter())
     dict_results['densite'].append(ci.density())
     dict_results['transit'].append(ci.clustering_coeff())
     dict_results['centralisation'].append(ci.freeman_betweenness())

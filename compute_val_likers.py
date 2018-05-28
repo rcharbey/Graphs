@@ -23,6 +23,8 @@ tab_nb_com = []
 tab_mod = []
 
 for graph_name in listdir(DATA):
+    if graph_name != '030b9055a37455e7ff44f609497d0fd6.gml':
+        continue
     g = Graph.Read_GML('%s/%s' % (DATA, graph_name))
     ci = ClassicIndicators(g)
     

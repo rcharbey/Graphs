@@ -8,7 +8,7 @@ Created on Mon May 28 16:24:34 2018
 from os import listdir
 from igraph import Graph
 
-import graph_utils 
+from graph_utils import ClassicIndicators
 from numpy import mean
 
 DATA = '../Data/Graphs_likers'

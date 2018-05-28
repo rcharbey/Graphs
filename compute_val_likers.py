@@ -11,7 +11,7 @@ from igraph import Graph
 import graph_utils 
 from numpy import mean
 
-DATA = '../Data/Graph_likers'
+DATA = '../Data/Graphs_likers'
 
 tab_n = []
 tab_m = []

@@ -26,8 +26,7 @@ dict_results = {
 
 for graph_name in listdir(DATA):
     
-    if graph_name != '030aefe7d1ee5be1bc17e69e4a452eb3.gml':
-        continue
+    print graph_name
     g = Graph.Read_GML('%s/%s' % (DATA, graph_name))
     ci = ClassicIndicators(g)
     
@@ -38,8 +37,7 @@ for graph_name in listdir(DATA):
     dict_results['transit'].append(ci.clustering_coeff())
     dict_results['centralisation'].append(ci.freeman_betweenness())
     dict_results['nb_com'].append(ci.nb_louvain_com())
-    dict_results['modularite'].append(ci.modularity()) 
-    print graph_name
+    dict_results['modularite'].append(ci.modularity())
     
 def moyenne(t):
     return round(mean(t), 2)

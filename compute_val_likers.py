@@ -27,13 +27,21 @@ for graph_name in listdir(DATA):
     ci = ClassicIndicators(g)
     
     tab_n.append(len(g.vs))
+    print 'n'
     tab_m.append(len(g.es))
+    print 'm'
     tab_diam.append(ci.diameter())
+    print 'diam'
     tab_densite.append(ci.density())
+    print 'density'
     tab_transit.append(ci.clustering_coeff())
+    print 'clustering coeff'
     tab_centralisation.append(ci.freeman_betweenness())
+    print 'freeman'
     tab_nb_com.append(ci.nb_louvain_com())
+    print 'nb louvain com'
     tab_mod.append(ci.modularity()) 
+    print 'modul'
     print graph_name
     
 def moyenne(t):

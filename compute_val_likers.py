@@ -34,6 +34,7 @@ for graph_name in listdir(DATA):
     tab_centralisation.append(ci.freeman_betweenness())
     tab_nb_com.append(ci.nb_louvain_com())
     tab_mod.append(ci.modularity()) 
+    print graph_name
     
 def moyenne(t):
     round(mean(t), 2)

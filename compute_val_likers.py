@@ -23,27 +23,17 @@ tab_nb_com = []
 tab_mod = []
 
 for graph_name in listdir(DATA):
-    if graph_name != '030b9055a37455e7ff44f609497d0fd6.gml':
-        continue
     g = Graph.Read_GML('%s/%s' % (DATA, graph_name))
     ci = ClassicIndicators(g)
     
     tab_n.append(len(g.vs))
-    print 'n'
     tab_m.append(len(g.es))
-    print 'm'
     tab_diam.append(ci.diameter())
-    print 'diam'
     tab_densite.append(ci.density())
-    print 'density'
     tab_transit.append(ci.clustering_coeff())
-    print 'clustering coeff'
     tab_centralisation.append(ci.freeman_betweenness())
-    print 'freeman'
     tab_nb_com.append(ci.nb_louvain_com())
-    print 'nb louvain com'
     tab_mod.append(ci.modularity()) 
-    print 'modul'
     print graph_name
     
 def moyenne(t):

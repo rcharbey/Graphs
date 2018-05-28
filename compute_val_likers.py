@@ -17,7 +17,7 @@ dict_results = {
     'n' : [], 
     'm' : [], 
     'diametre' : [], 
-    'densite : [], 
+    'densite' : [], 
     'transit' : [], 
     'centralisation' : [], 
     'nb_com' : [], 

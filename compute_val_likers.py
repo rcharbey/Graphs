@@ -30,7 +30,7 @@ for graph_name in listdir(DATA):
     tab_m.append(len(g.es))
     tab_diam.append(ci.diameter())
     tab_densite.append(ci.density())
-    tab_transit.append(ci.coeff_clustering())
+    tab_transit.append(ci.clustering_coeff())
     tab_centralisation.append(ci.freeman_betweenness())
     tab_nb_com.append(ci.nb_louvain_com())
     tab_mod.append(ci.modularity()) 

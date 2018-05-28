@@ -13,14 +13,16 @@ from numpy import mean
 
 DATA = '../Data/Graphs_likers'
 
-tab_n = []
-tab_m = []
-tab_diam = []
-tab_densite = []
-tab_transit = []
-tab_centralisation = []
-tab_nb_com = []
-tab_mod = []
+dict_results = {
+    'n' : [], 
+    'm' : [], 
+    'diametre' : [], 
+    'densite : [], 
+    'transit' : [], 
+    'centralisation' : [], 
+    'nb_com' : [], 
+    'modularite' : []
+}
 
 for graph_name in listdir(DATA):
     
@@ -28,28 +30,20 @@ for graph_name in listdir(DATA):
         continue
     g = Graph.Read_GML('%s/%s' % (DATA, graph_name))
     ci = ClassicIndicators(g)
-
     
-    tab_n.append(len(g.vs))
-    tab_m.append(len(g.es))
-    tab_diam.append(ci.diameter())
-    tab_densite.append(ci.density())
-    tab_transit.append(ci.clustering_coeff())
-    tab_centralisation.append(ci.freeman_betweenness())
-    tab_nb_com.append(ci.nb_louvain_com())
-    tab_mod.append(ci.modularity()) 
+    dict_results['n'].append(len(g.vs))
+    dict_results['m'].append(len(g.es))
+    dict_results['diam'].append(ci.diameter())
+    dict_results['densite'].append(ci.density())
+    dict_results['transit'].append(ci.clustering_coeff())
+    dict_results['centralisation'].append(ci.freeman_betweenness())
+    dict_results['nb_com'].append(ci.nb_louvain_com())
+    dict_results['modularite'].append(ci.modularity()) 
     print graph_name
     
 def moyenne(t):
     return round(mean(t), 2)
     
-print '%s : %s' % ('n', moyenne(tab_n))
-print '%s : %s' % ('m', moyenne(tab_m))
-print '%s : %s' % ('diametre', moyenne(tab_diam))
-print '%s : %s' % ('densite', moyenne(tab_densite))
-print '%s : %s' % ('transitivité', moyenne(tab_transit))
-print '%s : %s' % ('centralisation Freeman', moyenne(tab_centralisation))
-print '%s : %s' % ('nb communautés', moyenne(tab_nb_com))
-print '%s : %s' % ('modularité', moyenne(tab_mod))
-    
+for indic in dict_results:
+    print '%s : %s' % (indic, moyenne(dict_results[indic]))
     

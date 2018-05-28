@@ -42,6 +42,7 @@ for graph_name in listdir(DATA):
     
 def moyenne(t):
     print t
+    print mean(t)
     round(mean(t), 2)
     
 print '%s : %s' % ('n', moyenne(tab_n))

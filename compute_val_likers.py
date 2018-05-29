@@ -48,6 +48,8 @@ def moyenne(t):
     return round(mean(t), 2)
     
 for indic in dict_results:
+    print indic
+    print dict_results
     new_indic = [x for x in indic if type(x) == float]
     print '%s : %s' % (indic, moyenne(dict_results[indic]))
     

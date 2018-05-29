@@ -38,10 +38,12 @@ for graph_name in listdir(DATA):
     dict_results['centralisation'].append(ci.freeman_betweenness())
     dict_results['nb_com'].append(ci.nb_louvain_com())
     dict_results['modularite'].append(ci.modularity())
+    break
     
 def moyenne(t):
     return round(mean(t), 2)
     
 for indic in dict_results:
+    new_indic = [x for x in indic if type(x) == float]
     print '%s : %s' % (indic, moyenne(dict_results[indic]))
     

@@ -67,8 +67,7 @@ def create_likers_graph(ego):
             mutual_id = name_to_id.index(mutual_liker)
             if mutual_id > liker_id:
                     continue
-                
-            print liker_id, mutual_id
+            
             graph.add_edge(liker_id, mutual_id)
 
 

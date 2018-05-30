@@ -72,7 +72,7 @@ def create_likers_graph(ego):
             graph.add_edge(liker_id, mutual_id)
 
 
-    graph.write(expanduser('~/Graphs_likers/%s.gml' % ego), format = 'gml')
+    graph.write(expanduser('../Graphs_likers/%s.gml' % ego), format = 'gml')
     
 for ego in listdir(expanduser('~/data/three')):
     create_likers_graph(ego)

@@ -75,4 +75,3 @@ def create_likers_graph(ego):
     
 for ego in listdir(expanduser('~/data/three')):
     create_likers_graph(ego)
-    break

@@ -418,8 +418,6 @@ class ClassicIndicators(object):
 
 
     def diameter(self):
-        print 'graph_utils.diameter'
-        print self.graph.diameter(directed = False)
         return self.graph.diameter(directed = False)
 
     def nb_louvain_com(self, size_min = 1):

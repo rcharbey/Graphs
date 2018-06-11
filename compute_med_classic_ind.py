@@ -40,6 +40,8 @@ for graph_name in listdir(DATA):
     dict_results['nb_com'].append(ci.nb_louvain_com())
     dict_results['modularite'].append(ci.modularity())
     
+    print dict_results['diametre']    
+    
     i += 1
     if i > 5:
         break

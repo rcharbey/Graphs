@@ -52,7 +52,7 @@ for graph_name in listdir(DATA):
         break
     
 list_ego = dict_results.keys()
-with open('../Results/indics_classics_par_reseau_%s.csv' % graphs_type) as to_write:
+with open('../Results/indics_classics_par_reseau_%s.csv' % graphs_type, 'w') as to_write:
     csvw = csv.writer(to_write, delimiter = ';')
     csvw.writerow(['ego'] + list_indics)
     for ego in dict_results:

@@ -418,6 +418,8 @@ class ClassicIndicators(object):
 
 
     def diameter(self):
+        print 'graph_utils.diameter'
+        print self.graph.diameter(directed = False)
         return self.graph.diameter(directed = False)
 
     def nb_louvain_com(self, size_min = 1):
@@ -462,6 +464,3 @@ class ClassicIndicators(object):
 
     def nb_connected_components(self):
         return len(self.graph.decompose(minelements=2))
-
-    def aggregated_constraint(self):
-        print 'to do'

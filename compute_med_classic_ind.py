@@ -25,6 +25,7 @@ list_indics = [
     'modularite'
 ]
 
+dict_results = {}
 i = 0
 for graph_name in listdir(DATA):
     ego_name = graph_name.split('.')[0]

@@ -58,6 +58,5 @@ with open('../Results/indics_classics_par_reseau_%s.csv' % graphs_type, 'w') as 
     csvw = csv.writer(to_write, delimiter = ';')
     csvw.writerow(['ego'] + list_indics)
     for ego in dict_results:
-        for indic in list_indics:
-            csvw.writerow(dict_results[ego][indic])
+        csvw.writerow([dict_results[ego][indic] for indic in list_indics])
     

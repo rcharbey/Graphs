@@ -28,7 +28,7 @@ list_indics = [
 ]
 
 dict_results = {}
-i = 0
+
 for graph_name in listdir(DATA):
     ego_name = graph_name.split('.')[0]
     
@@ -48,10 +48,6 @@ for graph_name in listdir(DATA):
     this_graph_results['modularite'] = ci.modularity()
     
     dict_results[ego_name] = this_graph_results
-    
-    i += 1
-    if i > 5:
-        break
     
 list_ego = dict_results.keys()
 with open('../Results/indics_classics_par_reseau_%s.csv' % graphs_type, 'w') as to_write:

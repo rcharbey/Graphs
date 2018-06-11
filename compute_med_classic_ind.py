@@ -11,44 +11,50 @@ from igraph import Graph
 from graph_utils import ClassicIndicators
 from numpy import mean, median
 
-DATA = '../Data/Graphs_likers'
+graphs_type = 'likers'
+DATA = '../Data/Graphs_%s' % graphs_type
 
-dict_results = {
-    'n' : [], 
-    'm' : [], 
-    'diametre' : [], 
-    'densite' : [], 
-    'transit' : [], 
-    'centralisation' : [], 
-    'nb_com' : [], 
-    'modularite' : []
-}
+list_indics = [
+    'n',
+    'm', 
+    'diametre', 
+    'densite', 
+    'transit', 
+    'centralisation', 
+    'nb_com', 
+    'modularite'
+]
 
 i = 0
 for graph_name in listdir(DATA):
+    ego_name = graph_name.split('.')[0]
     
     print graph_name
     g = Graph.Read_GML('%s/%s' % (DATA, graph_name))
     ci = ClassicIndicators(g)
     
-    dict_results['n'].append(len(g.vs))
-    dict_results['m'].append(len(g.es))
-    dict_results['diametre'].append(ci.diameter())
-    dict_results['densite'].append(ci.density())
-    dict_results['transit'].append(ci.clustering_coeff())
-    dict_results['centralisation'].append(ci.freeman_betweenness())
-    dict_results['nb_com'].append(ci.nb_louvain_com())
-    dict_results['modularite'].append(ci.modularity())
+    this_graph_results = {}
+    
+    this_graph_results['n'] = len(g.vs)
+    this_graph_results['m'] = len(g.es)
+    this_graph_results['diametre'] = ci.diameter()
+    this_graph_results['densite'] = ci.density()
+    this_graph_results['transit'] = ci.clustering_coeff()
+    this_graph_results['centralisation'] = ci.freeman_betweenness()
+    this_graph_results['nb_com'] = ci.nb_louvain_com()
+    this_graph_results['modularite'] = ci.modularity()
+    
+    dict_results[ego_name] = this_graph_results
     
     i += 1
     if i > 5:
         break
     
-def moyenne(t):
-    return round(mean(t), 2)
-    
-for indic in dict_results:
-    new_indic = [x for x in dict_results[indic] if type(x) in [float, int]]
-    print new_indic
-    print '%s : %s' % (indic, round(median(new_indic), 2))
+list_ego = dict_results.keys()
+with open('../Results/indics_classics_par_reseau_%s.csv' % graphs_type) as to_write:
+    csvw = csv.writer(to_write, delimiter = ';')
+    csvw.writerow(['ego'] + list_indics)
+    for ego in dict_results:
+        for indic in list_indics:
+            csvw.writerow(dict_results[ego][indic])
     

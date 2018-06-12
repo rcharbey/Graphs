@@ -9,11 +9,10 @@ from os import listdir
 from igraph import Graph
 
 from graph_utils import ClassicIndicators
-from numpy import mean, median
 
 import csv
 
-graphs_type = 'likers'
+graphs_type = 'commenters'
 DATA = '../Data/Graphs_%s' % graphs_type
 
 list_indics = [

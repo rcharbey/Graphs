@@ -5,6 +5,8 @@ Created on Wed Mar 27 10:15:01 2019
 @author: raphael
 """
 
+from graph_utils import Admin
+
 class Communities(object):
     def __init__(self, indicators, graph):
         self.graph = Admin.import_graph(graph)
@@ -12,7 +14,7 @@ class Communities(object):
         indicators.communities = self
             
     def compute_communities(self):
-        max_modularity, max_communities = 0, None
+        max_modularity, max_communities = -1, None
         for i in range(20):
             communities = self.graph.community_multilevel()
             mod = communities.modularity
@@ -22,10 +24,10 @@ class Communities(object):
         temp_com = [c for c in max_communities]
         temp_com.sort(key = lambda x: len(x), reverse = True)
         self.communities = temp_com
-        self.modularity = max_modularity 
+        self._modularity = max_modularity 
         
     def modularity(self):
-        return self.modularity
+        return self._modularity
         
     def densities(self):
         result = []
@@ -42,7 +44,6 @@ class Communities(object):
         return result
         
     def link_from_first_com(self):
-        result = []
         c1 = self.communities[0]
         c2 = self.communities[1]
         nb_edges = 0

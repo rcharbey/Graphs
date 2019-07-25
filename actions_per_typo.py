@@ -55,7 +55,6 @@ def indicators_per_typo():
             for indic in list_all:
                 row.append(round(means[typo][indic], 2))
                 
-            print row
             csvw.writerow(row)
 
                         
@@ -68,7 +67,6 @@ def indicators_per_typo():
             for indic in list_all:
                 row.append(round(medians[typo][indic], 2))
                 
-            print row
             csvw.writerow(row)
             
 def plot_per_typo():

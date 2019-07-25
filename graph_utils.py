@@ -76,10 +76,6 @@ class Admin(object):
 class Leda(object):
     def __init__(self, folder):
         self.folder = folder
-            
-    @staticmethod
-    def import_graph(graph_loc)
-                
         
     def write(self, gname):
         nodes = []

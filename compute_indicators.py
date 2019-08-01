@@ -52,5 +52,7 @@ with open('%s/../Results/indics_per_network.csv' % DATA, 'w') as to_write:
     csvw = csv.writer(to_write, delimiter = ';')
     csvw.writerow(['network'] + list_indics)
     for ego in dict_results:
-        csvw.writerow([dict_results[ego][indic] for indic in list_indics])
+        if dict_results[ego]['n'] == 0:
+            continue
+        csvw.writerow([ego] + [dict_results[ego][indic] for indic in list_indics])
     

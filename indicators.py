@@ -139,14 +139,16 @@ class Indicators(object):
         return round(self.graph.density(),5)
 
     def freeman_betweenness(self):
-        if len(self.graph.vs) == 0:
+        n = self.n()
+        if n in [0,1]:
             return 'undetermined'
+        
         btw_list = self.graph.betweenness()
-        n = len(self.graph.vs)
-        rbtw_list = [btw/(n**2-2*n+3) for btw in btw_list]
-        max_rbtw = max(rbtw_list)
-        sum_rbtw = sum([(max_rbtw - rbtw) for rbtw in rbtw_list])
-        return 2*round(sum_rbtw/(n-1),5) if (n-1) != 0 else 'undetermined'
+        max_possible_btw = (n**2 -3*n + 2) / 2.0
+        relative_btw_list = [btw/max_possible_btw for btw in btw_list]
+        max_rbtw = max(relative_btw_list)
+        sum_rbtw = sum([(max_rbtw - rbtw) for rbtw in relative_btw_list])
+        return sum_rbtw/(n-1)
 
     def nb_isolated_vertices(self):
         return len([v for v in self.graph.vs if v.degree() == 0])

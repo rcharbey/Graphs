@@ -43,15 +43,6 @@ class Communities(object):
             result.append(Indicators(temp_graph).n() / float(Indicators(self.graph).n()))
         return result
         
-    def link_from_first_com(self):
-        c1 = self.communities[0]
-        c2 = self.communities[1]
-        nb_edges = 0
-        for e in self.graph.es:
-            if e.target in c1 and e.source in c2 or e.source in c2 and e.target in c1:
-                nb_edges += 1
-        return nb_edges / float(len(c1)*len(c2))
-        
     def nb_communities(self, size_min = 2):
         i = 0
         for community in self.communities:
@@ -60,41 +51,10 @@ class Communities(object):
             else: 
                 break
         return i        
-        
-
-class Indicators(object):
+    
+def Journey(object):
     def __init__(self, graph):
         self.graph = Admin.import_graph(graph)
-        self.clusters_list = None
-        self.connected_components = None
-        self.max_cc = None
-        
-        self.compute_cc() 
-        
-    def compute_cc(self):
-        if self.connected_components == None:
-            self.connected_components = self.graph.decompose()
-            
-    def get_max_cc(self):
-        self.compute_cc()
-        max_cc = None
-        for cc in self.connected_components:
-            if not max_cc or len(cc.vs) > len(max_cc.vs):
-                max_cc = cc
-        self.max_cc = max_cc
-            
-    def size_max_cc(self):
-        self.compute_cc()
-        max_cc = self.get_max_cc()
-        if not self.max_cc:
-            return 0
-        return len(self.max_cc.vs)
-        
-    def nodes_in_max_cc(self):
-        size_max_cc = self.size_max_cc()
-        if not self.max_cc:
-            return 0
-        return size_max_cc / float(self.n())
         
     def bfs(self, start, stop_list = None):
         start['color'] = 'gray'
@@ -116,6 +76,29 @@ class Indicators(object):
         del self.graph.vs['distance']
         del self.graph.vs['color']
         
+
+class Indicators(object):
+    def __init__(self, graph):
+        self.graph = Admin.import_graph(graph)
+        self.connected_components = None
+        self.max_cc = None
+        self.connected_components = self.graph.decompose()
+        
+    @staticmethod
+    def __list_indicators__():
+        return [indic for indic in dir(Indicators) if not indic[0] == '_']
+        
+    def size_max_cc(self):
+        max_cc = None
+        for cc in self.connected_components:
+            if not max_cc or len(cc.vs) > len(max_cc.vs):
+                max_cc = cc
+        max_cc = max_cc
+        
+        if not self.max_cc:
+            return 0
+        return len(self.max_cc.vs) / float(self.n())
+        
     def n(self):
         return len(self.graph.vs())
         
@@ -124,13 +107,6 @@ class Indicators(object):
 
     def diameter(self):
         return self.graph.diameter(directed = False)
-    
-    def nb_cluster_sup_2(self):
-        nb = 0
-        for cluster in self.clusters_list:
-            if len(cluster) >= 2:
-                nb += 1
-        return nb
 
     def clustering_coeff(self):
         return round(self.graph.transitivity_undirected(),5)
@@ -182,10 +158,4 @@ class Indicators(object):
             return self.communities.proportions()
         except:
             return Communities(self, self.graph).proportions()
-            
-    def com_link_from_first_com(self):
-        try :
-            return self.communities.link_from_first_com()
-        except:
-            return Communities(self, self.graph).link_from_first_com()
         

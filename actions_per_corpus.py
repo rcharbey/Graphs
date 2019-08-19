@@ -16,7 +16,7 @@ class Corpus(object):
         self.Graphs_fold = self.folder + '/Data'
         self.Indics_fold = self.folder + '/Indics_per_graph' 
         
-        self.list_gnames = os.listdir(self.Graphs_fold)  
+        self.list_gnames = [x for x in os.listdir(self.Graphs_fold) if x.split('.') == 'gml']
 
     def compute_indic(self, indic_name):    
         indic_per_graph = {}
